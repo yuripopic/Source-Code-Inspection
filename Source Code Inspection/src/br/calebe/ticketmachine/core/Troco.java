@@ -14,7 +14,7 @@ class Troco {
         papeisMoeda = new PapelMoeda[6];
         
         int[] valoresMoeda = {100, 50, 20, 10, 5, 2}; // denominações disponíveis
-        for (int i = 0; i < valoresMoeda.length; i++) {
+        for (int i = 0; i <= 5; i++) {
             int quantidade = valor / valoresMoeda[i]; // quantidade de notas/moedas do valor atual
             papeisMoeda[i] = new PapelMoeda(valoresMoeda[i], quantidade);
             valor -= quantidade * valoresMoeda[i]; // subtrai o valor correspondente
