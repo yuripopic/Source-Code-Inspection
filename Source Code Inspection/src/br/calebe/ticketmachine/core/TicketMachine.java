@@ -41,9 +41,6 @@ public class TicketMachine {
     }
 
     public String imprimir() {
-        if (saldo < valor) {
-            System.out.println("Saldo insuficiente!");
-        }
         String result = "*****************\n";
         result += "*** R$ " + saldo + ",00 ****\n";
         result += "*****************\n";
