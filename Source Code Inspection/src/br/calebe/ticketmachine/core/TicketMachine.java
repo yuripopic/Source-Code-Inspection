@@ -42,7 +42,7 @@ public class TicketMachine {
 
     public String imprimir() {
         String result = "*****************\n";
-        result += "*** R$ " + saldo + ",00 ****\n";
+        result += "*** R$ " + valor + ",00 ****\n";
         result += "*****************\n";
         return result;
     }
