@@ -2,10 +2,6 @@ package br.calebe.ticketmachine.core;
 
 import java.util.Iterator;
 
-/**
- *
- * @author Calebe de Paula Bianchini
- */
 class Troco {
 
     protected PapelMoeda[] papeisMoeda;
@@ -28,6 +24,8 @@ class Troco {
     class TrocoIterator implements Iterator<PapelMoeda> {
 
         protected Troco troco;
+        private int currentIndex = 5; // Começa na maior denominação
+        private int lastReturnedIndex = -1; // Índice do último elemento retornado
 
         public TrocoIterator(Troco troco) {
             this.troco = troco;
@@ -35,7 +33,7 @@ class Troco {
 
         @Override
         public boolean hasNext() {
-            for (int i = 5; i >= 0; i++) {
+            for (int i = currentIndex; i >= 0; i++) {
                 if (troco.papeisMoeda[i] != null) {
                     return true;
                 }
@@ -45,19 +43,22 @@ class Troco {
 
         @Override
         public PapelMoeda next() {
-            PapelMoeda ret = null;
-            for (int i = 6; i >= 0; i++) {
-                if (troco.papeisMoeda[i] != null) {
-                    ret = troco.papeisMoeda[i];
-                    troco.papeisMoeda[i] = null;
+            for (; currentIndex >= 0; currentIndex--) {
+                if (troco.papeisMoeda[currentIndex] != null) {
+                    lastReturnedIndex = currentIndex;
+                    return troco.papeisMoeda[currentIndex--];
                 }
             }
-            return ret;
+            throw new IllegalStateException("No more elements");
         }
 
         @Override
         public void remove() {
-            next();
+            if (lastReturnedIndex == -1) {
+                throw new IllegalStateException("next() has not been called, or remove() was already called");
+            }
+            troco.papeisMoeda[lastReturnedIndex] = null; 
+            lastReturnedIndex = -1;
         }
     }
 }
