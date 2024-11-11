@@ -54,10 +54,5 @@ class Troco {
             }
             return ret;
         }
-
-        @Override
-        public void remove() {
-            next();
-        }
     }
 }
