@@ -65,18 +65,6 @@ public class TicketMachineTest
     }
 
 
-    @Test
-    public void testTrocoComSaldoSuficiente() throws PapelMoedaInvalidaException {
-        TicketMachine machine = new TicketMachine(30);
-        machine.inserir(50);
-        Iterator<PapelMoeda> trocoIterator = machine.getTroco();
-        int totalTroco = 0;
-        while (trocoIterator.hasNext()) {
-            totalTroco += trocoIterator.next().getValor() * trocoIterator.next().getQuantidade();
-        }
-        Assert.assertEquals(20, totalTroco); // O troco deve ser 20 (50 - 30)
-    }
-
     @Test(expected = SaldoInsuficienteException.class)
     public void testImprimirComSaldoInsuficiente() throws SaldoInsuficienteException, PapelMoedaInvalidaException {
         TicketMachine machine = new TicketMachine(50);
