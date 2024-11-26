@@ -2,6 +2,7 @@ package com.mycompany.app;
 
 import org.junit.Assert;
 import org.junit.Test;
+import java.util.Iterator;
 
 /**
  * Unit test for simple App.
