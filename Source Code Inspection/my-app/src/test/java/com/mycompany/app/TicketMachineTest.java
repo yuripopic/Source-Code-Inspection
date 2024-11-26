@@ -83,4 +83,17 @@ public class TicketMachineTest
         Assert.assertEquals(0, machine.getSaldo()); // Saldo deve continuar 0
     }
 
+    @Test
+    public void testTrocoComValorExato() {
+        Troco troco = new Troco(186);  // Valor com múltiplas notas
+        Iterator<PapelMoeda> iterator = troco.getIterator();
+        Assert.assertTrue(iterator.hasNext());  // Verifica se existe troco
+    }
+
+    @Test
+    public void testTrocoComNotasPequenas() {
+        Troco troco = new Troco(7);  // Notas de 5 e 2
+        Iterator<PapelMoeda> iterator = troco.getIterator();
+        Assert.assertTrue(iterator.hasNext());  // Deve haver troco
+    }
 }
